@@ -36,51 +36,58 @@ body {
 .stars::after {
   content: "";
   position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: white;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
   box-shadow:
-    /* Layer 1: small dim stars */
-    24px 80px 0 -0.5px rgba(255, 255, 255, 0.3),
-    80px 160px 0 -0.5px rgba(255, 255, 255, 0.2),
-    160px 40px 0 -0.5px rgba(255, 255, 255, 0.35),
-    240px 200px 0 -0.5px rgba(255, 255, 255, 0.25),
-    320px 120px 0 -0.5px rgba(255, 255, 255, 0.3),
-    60px 300px 0 -0.5px rgba(255, 255, 255, 0.2),
-    180px 350px 0 -0.5px rgba(255, 255, 255, 0.35),
-    300px 280px 0 -0.5px rgba(255, 255, 255, 0.15),
-    50px 500px 0 -0.5px rgba(255, 255, 255, 0.25),
-    200px 450px 0 -0.5px rgba(255, 255, 255, 0.3),
-    350px 380px 0 -0.5px rgba(255, 255, 255, 0.2),
-    100px 600px 0 -0.5px rgba(255, 255, 255, 0.3),
-    280px 550px 0 -0.5px rgba(255, 255, 255, 0.25),
-    20px 700px 0 -0.5px rgba(255, 255, 255, 0.2),
-    340px 650px 0 -0.5px rgba(255, 255, 255, 0.35);
-  animation: twinkle 4s ease-in-out infinite alternate;
+    30px 90px white,
+    85px 175px white,
+    170px 50px rgba(255, 255, 255, 0.8),
+    250px 210px white,
+    330px 130px rgba(255, 255, 255, 0.7),
+    65px 310px white,
+    190px 360px rgba(255, 255, 255, 0.9),
+    310px 290px rgba(255, 255, 255, 0.6),
+    55px 520px white,
+    210px 460px rgba(255, 255, 255, 0.8),
+    360px 400px white,
+    110px 620px rgba(255, 255, 255, 0.7),
+    290px 570px white,
+    25px 720px rgba(255, 255, 255, 0.9),
+    350px 670px white,
+    140px 140px rgba(255, 255, 255, 0.6),
+    380px 60px white,
+    45px 430px rgba(255, 255, 255, 0.8),
+    270px 750px white,
+    200px 260px rgba(255, 255, 255, 0.7);
+  animation: twinkle 3s ease-in-out infinite alternate;
 }
 
 .stars::after {
-  width: 1.5px;
-  height: 1.5px;
   box-shadow:
-    /* Layer 2: offset twinkling stars */
-    130px 50px 0 -0.5px rgba(255, 255, 255, 0.4),
-    40px 220px 0 -0.5px rgba(255, 255, 255, 0.25),
-    260px 90px 0 -0.5px rgba(255, 255, 255, 0.3),
-    90px 400px 0 -0.5px rgba(255, 255, 255, 0.35),
-    310px 320px 0 -0.5px rgba(255, 255, 255, 0.2),
-    170px 180px 0 -0.5px rgba(255, 255, 255, 0.4),
-    220px 520px 0 -0.5px rgba(255, 255, 255, 0.25),
-    370px 460px 0 -0.5px rgba(255, 255, 255, 0.3),
-    150px 680px 0 -0.5px rgba(255, 255, 255, 0.2),
-    60px 580px 0 -0.5px rgba(255, 255, 255, 0.35);
-  animation: twinkle 5s ease-in-out infinite alternate-reverse;
+    135px 65px rgba(255, 255, 255, 0.9),
+    45px 235px white,
+    270px 105px rgba(255, 255, 255, 0.7),
+    95px 415px white,
+    320px 340px rgba(255, 255, 255, 0.8),
+    175px 195px white,
+    225px 540px rgba(255, 255, 255, 0.6),
+    375px 480px white,
+    155px 700px rgba(255, 255, 255, 0.9),
+    65px 600px white,
+    300px 160px rgba(255, 255, 255, 0.7),
+    10px 50px white,
+    240px 390px rgba(255, 255, 255, 0.8),
+    350px 560px white,
+    80px 780px white;
+  animation: twinkle 4s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes twinkle {
   0% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   100% {
     opacity: 1;
