@@ -19,16 +19,72 @@ function createId() {
 export function ChatRoom({ world }: ChatRoomProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [streamingText, setStreamingText] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isTyping]);
+  }, [messages, isTyping, streamingText]);
+
+  const sendWithAI = useCallback(
+    async (content: string, allMessages: ChatMessage[]) => {
+      const apiMessages = allMessages.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ worldId: world.id, messages: apiMessages }),
+        });
+
+        if (!res.ok) throw new Error("API error");
+
+        const reader = res.body?.getReader();
+        if (!reader) throw new Error("No reader");
+
+        const decoder = new TextDecoder();
+        let fullText = "";
+
+        setStreamingText("");
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          // Parse SSE-like events from Anthropic stream
+          const lines = chunk.split("\n");
+          for (const line of lines) {
+            if (line.startsWith("event: content_block_delta")) continue;
+            if (line.startsWith("data: ")) {
+              try {
+                const data = JSON.parse(line.slice(6));
+                if (data.type === "content_block_delta" && data.delta?.text) {
+                  fullText += data.delta.text;
+                  setStreamingText(fullText);
+                }
+              } catch {
+                // skip non-JSON lines
+              }
+            }
+          }
+        }
+
+        return fullText || null;
+      } catch {
+        return null; // fallback to mock
+      }
+    },
+    [world.id]
+  );
 
   const sendMessage = useCallback(
-    (content: string) => {
+    async (content: string) => {
       const userMsg: ChatMessage = {
         id: createId(),
         role: "user",
@@ -36,23 +92,28 @@ export function ChatRoom({ world }: ChatRoomProps) {
         timestamp: Date.now(),
       };
 
-      setMessages((prev) => [...prev, userMsg]);
+      const updatedMessages = [...messages, userMsg];
+      setMessages(updatedMessages);
       setIsTyping(true);
+      setStreamingText("");
 
-      // Simulate AI thinking delay
-      setTimeout(() => {
-        const reply = generateMockReply(content, world);
-        const assistantMsg: ChatMessage = {
-          id: createId(),
-          role: "assistant",
-          content: reply,
-          timestamp: Date.now(),
-        };
-        setMessages((prev) => [...prev, assistantMsg]);
-        setIsTyping(false);
-      }, 800 + Math.random() * 700);
+      // Try real AI first, fallback to mock
+      const aiReply = await sendWithAI(content, updatedMessages);
+
+      const replyText = aiReply || generateMockReply(content, world);
+
+      const assistantMsg: ChatMessage = {
+        id: createId(),
+        role: "assistant",
+        content: replyText,
+        timestamp: Date.now(),
+      };
+
+      setMessages((prev) => [...prev, assistantMsg]);
+      setIsTyping(false);
+      setStreamingText("");
     },
-    [world]
+    [messages, world, sendWithAI]
   );
 
   const hasMessages = messages.length > 0;
@@ -73,12 +134,14 @@ export function ChatRoom({ world }: ChatRoomProps) {
             ))}
             {isTyping && (
               <div className="flex justify-start animate-fade-in">
-                <div className="rounded-2xl rounded-bl-md bg-white/8 px-4 py-3 text-sm text-white/40">
-                  <span className="inline-flex gap-1">
-                    <span className="animate-bounce" style={{ animationDelay: "0ms" }}>·</span>
-                    <span className="animate-bounce" style={{ animationDelay: "150ms" }}>·</span>
-                    <span className="animate-bounce" style={{ animationDelay: "300ms" }}>·</span>
-                  </span>
+                <div className="rounded-2xl rounded-bl-md bg-white/8 px-4 py-3 text-sm text-white/70 leading-relaxed whitespace-pre-wrap">
+                  {streamingText || (
+                    <span className="inline-flex gap-1 text-white/40">
+                      <span className="animate-bounce" style={{ animationDelay: "0ms" }}>·</span>
+                      <span className="animate-bounce" style={{ animationDelay: "150ms" }}>·</span>
+                      <span className="animate-bounce" style={{ animationDelay: "300ms" }}>·</span>
+                    </span>
+                  )}
                 </div>
               </div>
             )}
