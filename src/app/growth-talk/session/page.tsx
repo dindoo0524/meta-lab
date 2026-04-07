@@ -1,66 +1,26 @@
-"use client";
+import { ChatRoom } from "@/components/chat/chat-room";
+import { growthTalkWorld } from "@/content/worlds/growth-talk";
+import Link from "next/link";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { SessionStep } from "@/lib/growth-talk/session-types";
-import { useSession } from "@/components/growth-talk/use-session";
-import { SessionIntro } from "@/components/growth-talk/session-intro";
-import { QuestionCard } from "@/components/growth-talk/question-card";
-import { AnswerInput } from "@/components/growth-talk/answer-input";
-
-export default function SessionPage() {
-  const router = useRouter();
-  const {
-    state,
-    startSession,
-    answerQuestion,
-    currentQuestion,
-    currentQuestionIndex,
-    isComplete,
-  } = useSession();
-
-  useEffect(() => {
-    if (isComplete) {
-      router.push("/growth-talk/result");
-    }
-  }, [isComplete, router]);
-
-  if (state.step === SessionStep.INTRO) {
-    return <SessionIntro onStart={startSession} />;
-  }
-
-  if (currentQuestion) {
-    return (
-      <div className="flex flex-1 flex-col justify-center">
-        {/* Progress bar */}
-        <div className="mb-8 flex gap-2">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-                i <= currentQuestionIndex
-                  ? "bg-(--color-accent)"
-                  : "bg-white/10"
-              }`}
-            />
-          ))}
-        </div>
-
-        <div className="animate-fade-in">
-          <QuestionCard
-            questionNumber={currentQuestionIndex + 1}
-            totalQuestions={3}
-            questionText={currentQuestion.text}
-          />
-          <AnswerInput
-            key={currentQuestion.id}
-            onSubmit={answerQuestion}
-            isLast={state.step === SessionStep.Q3}
-          />
+export default function GrowthTalkSession() {
+  return (
+    <div className="flex flex-1 flex-col">
+      {/* Header */}
+      <div className="mb-4 flex items-center gap-3">
+        <Link
+          href="/growth-talk"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-white/40 transition-colors hover:text-white/70"
+        >
+          ←
+        </Link>
+        <div>
+          <p className="text-sm font-medium">{growthTalkWorld.name}</p>
+          <p className="text-xs text-white/30">{growthTalkWorld.topic}</p>
         </div>
       </div>
-    );
-  }
 
-  return null;
+      {/* Chat */}
+      <ChatRoom world={growthTalkWorld} />
+    </div>
+  );
 }

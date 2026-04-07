@@ -1,0 +1,22 @@
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: number;
+}
+
+export interface StarterQuestion {
+  id: string;
+  text: string;
+}
+
+export interface WorldConfig {
+  id: string;
+  name: string;
+  description: string;
+  emoji: string;
+  topic: string;
+  offTopicMessage: string;
+  starterQuestions: StarterQuestion[];
+  systemPrompt: string;
+}
