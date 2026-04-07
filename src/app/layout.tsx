@@ -8,7 +8,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "성장톡 — 오늘의 성장 대화",
+  title: "META — 성장톡",
   description:
     "하루 10분, 제약된 AI 대화로 오늘을 돌아보고 내일의 한 걸음을 정하는 성장 도구",
 };

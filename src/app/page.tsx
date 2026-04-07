@@ -4,6 +4,9 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center text-center">
       <div className="mb-12">
+        <p className="mb-3 text-xs font-medium tracking-widest text-(--color-accent) uppercase">
+          META
+        </p>
         <h1 className="text-4xl font-bold tracking-tight text-foreground">
           성장톡
         </h1>

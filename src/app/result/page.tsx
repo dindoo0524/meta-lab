@@ -34,8 +34,11 @@ export default function ResultPage() {
   return (
     <div className="flex flex-1 flex-col justify-center">
       <div className="mb-10">
-        <p className="mb-1 text-sm text-(--color-text-muted)">대화 완료</p>
+        <p className="mb-1 text-xs font-medium tracking-widest text-(--color-accent) uppercase">
+          META
+        </p>
         <h1 className="text-2xl font-semibold">오늘의 성장톡</h1>
+        <p className="mt-1 text-sm text-(--color-text-muted)">대화 완료</p>
       </div>
 
       <SessionSummary summary={data.result.reflectionSummary} />
