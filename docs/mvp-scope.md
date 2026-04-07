@@ -1,51 +1,44 @@
-# MVP Scope — 성장톡 v0
+# MVP Scope — META Lab
 
 ## 포함 (In Scope)
 
-### 페이지
-- `/` — 랜딩/인트로
-- `/session` — 성장톡 세션
-- `/result` — 결과/요약
+### 구조
+- META Lab 허브 (`/`)
+- 실험별 소개 페이지 (`/experiments/{id}`)
+- 실험별 채팅 세션 (`/experiments/{id}/session`)
+- Claude API 스트리밍 엔드포인트 (`/api/chat`)
+
+### 현재 실험
+- 성장톡 (growth-talk) — 일상 성찰/감정 정리
+- 스페인어 튜터 (spanish-tutor) — 칸미고 스타일 학습
 
 ### 기능
-- 하루 느낌 자유 입력
-- 3개 구조화된 질문 순차 표시
-- 각 질문에 대한 답변 입력
-- 짧은 성찰 요약 생성 (목 데이터)
-- 1개 다음 행동 제안 (목 데이터)
-- 세션 완료 후 결과 페이지 이동
+- 주제 제한된 AI 채팅
+- 선질문(starter questions)으로 대화 시작
+- 주제 벗어나면 거부
+- Claude API 스트리밍 응답
+- API 실패 시 mock 폴백
 
 ### 기술
-- Next.js App Router
-- TypeScript
-- TailwindCSS
-- React useState로 세션 상태 관리
-- sessionStorage로 페이지 간 데이터 전달
-- 목 데이터 (하드코딩된 질문/요약)
+- Next.js 16 App Router
+- TypeScript + TailwindCSS v4
+- @anthropic-ai/sdk
+- ExperimentConfig 기반 실험 설정
 
 ### 디자인
-- 모바일 퍼스트 (375px 기준)
-- 따뜻하고 차분한 색상
-- 넉넉한 여백
-- 깔끔한 타이포그래피
-- 단일 CTA
+- 모바일 퍼스트
+- 나이트 다크 + 별 반짝임 우주 테마
+- 퍼플 액센트
 
 ## 제외 (Out of Scope)
 
-- 실제 AI/LLM 연동
 - 인증/로그인
 - 데이터베이스
-- 세션 히스토리 저장
-- 결제
-- 다크 모드
-- 다중 대화 모드
-- 분석/트래킹
-- PWA/오프라인
+- 대화 히스토리 저장
+- 결제/보상 체계
 - 프로덕션 배포
 - 테스트 코드
 - CI/CD
-- 어드민 페이지
-- i18n (한국어 전용)
 
 ## 결정 원칙
 
