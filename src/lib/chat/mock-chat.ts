@@ -118,6 +118,21 @@ function spanishReply(message: string): string {
   return pick(SPANISH.default);
 }
 
+// --- One Line responses ---
+
+const ONE_LINE: string[] = [
+  "그 순간, 뭘 느꼈어요?",
+  "왜 하필 그게 떠올랐을까요?",
+  "그걸 다른 한 줄로 바꾼다면?",
+  "그 안에 숨은 감정이 있나요?",
+  "내일도 그럴 것 같아요?",
+  "그 문장에서 가장 무거운 단어는 뭐예요?",
+];
+
+function oneLineReply(): string {
+  return pick(ONE_LINE);
+}
+
 // --- Main export ---
 
 export function generateMockReply(
@@ -133,6 +148,8 @@ export function generateMockReply(
       return growthTalkReply(message);
     case "spanish-tutor":
       return spanishReply(message);
+    case "one-line":
+      return oneLineReply();
     default:
       return "아직 준비 중인 실험이에요 ✨";
   }
