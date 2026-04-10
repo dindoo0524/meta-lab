@@ -25,12 +25,17 @@ export function ChatRoom({ experiment }: ChatRoomProps) {
   const [style, setStyle] = useState<ChatStyle>("iris");
   const [constraintLevel, setConstraintLevel] = useState<ConstraintLevel>("guided");
   const scrollRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping, streamingText]);
+
+  const resetChat = useCallback(() => {
+    setMessages([]);
+    setStreamingText("");
+    setIsTyping(false);
+  }, []);
 
   const sendWithAI = useCallback(
     async (content: string, allMessages: ChatMessage[]) => {
@@ -126,9 +131,18 @@ export function ChatRoom({ experiment }: ChatRoomProps) {
 
   return (
     <div className="flex flex-1 flex-col">
-      {/* Style selector */}
-      <StyleSelector style={style} onStyleChange={setStyle} />
-      {/* Constraint selector */}
+      {/* Controls */}
+      <div className="flex items-center justify-between mb-2">
+        <StyleSelector style={style} onStyleChange={setStyle} />
+        {hasMessages && (
+          <button
+            onClick={resetChat}
+            className="shrink-0 ml-2 rounded-lg px-3 py-1.5 text-[10px] font-medium text-white/30 border border-(--color-border) hover:text-white/60 hover:border-white/20 transition-all"
+          >
+            새 대화
+          </button>
+        )}
+      </div>
       <ConstraintSelector level={constraintLevel} onLevelChange={setConstraintLevel} />
 
       {/* Messages area */}
@@ -156,6 +170,7 @@ export function ChatRoom({ experiment }: ChatRoomProps) {
                 </div>
               </div>
             )}
+            <div ref={bottomRef} />
           </div>
         )}
       </div>
