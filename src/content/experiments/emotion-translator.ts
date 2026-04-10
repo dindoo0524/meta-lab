@@ -5,6 +5,7 @@ export const emotionTranslatorExperiment: ExperimentConfig = {
   name: "감정 번역기",
   description: "감정에 정확한 이름을 붙이다",
   emoji: "🎭",
+  category: "감정",
   topic: "감정 인식, 감정 어휘 확장, 자기 이해",
   offTopicMessage:
     "여기서는 감정의 이름을 찾는 데 집중해요. 지금 느끼는 감정을 말해주세요 ✨",

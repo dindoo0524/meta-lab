@@ -5,6 +5,7 @@ export const fiveWhysExperiment: ExperimentConfig = {
   name: "역질문",
   description: "왜? 를 끝까지 파고들다",
   emoji: "🔍",
+  category: "사고",
   topic: "사고 훈련, 근본 원인 분석, 자기 탐구",
   offTopicMessage:
     "여기서는 '왜?'를 파고드는 데 집중해요. 생각이나 고민을 하나 던져주세요 ✨",

@@ -5,6 +5,7 @@ export const spanishTutorExperiment: ExperimentConfig = {
   name: "스페인어 튜터",
   description: "스페인어 회화 연습",
   emoji: "🇪🇸",
+  category: "학습",
   topic: "스페인어 학습, 회화 연습, 문법, 표현",
   offTopicMessage:
     "¡Aquí solo hablamos español! 여기서는 스페인어 학습에 집중해요. 다른 이야기는 다른 실험에서 만나요 ✨",

@@ -5,6 +5,7 @@ export const oneLineExperiment: ExperimentConfig = {
   name: "하루 한 줄",
   description: "오늘을 한 문장으로",
   emoji: "✏️",
+  category: "기록",
   topic: "하루 기록, 한 줄 일기, 생각 확장",
   offTopicMessage:
     "여기서는 오늘의 한 줄에 집중해요. 한 문장으로 오늘을 표현해 보세요 ✨",

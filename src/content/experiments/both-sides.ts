@@ -5,6 +5,7 @@ export const bothSidesExperiment: ExperimentConfig = {
   name: "양면 사고",
   description: "모든 주제에는 두 면이 있다",
   emoji: "⚖️",
+  category: "사고",
   topic: "비판적 사고, 의사결정, 다각적 분석",
   offTopicMessage:
     "여기서는 양면을 분석하는 데 집중해요. 고민하는 주제나 결정을 던져주세요 ✨",

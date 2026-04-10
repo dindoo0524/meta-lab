@@ -14,11 +14,14 @@ export type ChatStyle = "iris" | "milo" | "noah";
 
 export type ConstraintLevel = "free" | "guided" | "strict";
 
+export type ExperimentCategory = "감정" | "사고" | "학습" | "기록";
+
 export interface ExperimentConfig {
   id: string;
   name: string;
   description: string;
   emoji: string;
+  category: ExperimentCategory;
   topic: string;
   offTopicMessage: string;
   starterQuestions: StarterQuestion[];

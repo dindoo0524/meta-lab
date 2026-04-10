@@ -5,6 +5,7 @@ export const growthTalkExperiment: ExperimentConfig = {
   name: "성장톡",
   description: "오늘의 성장 대화",
   emoji: "🌱",
+  category: "감정",
   topic: "일상 성찰, 감정 정리, 성장, 자기 돌아보기",
   offTopicMessage:
     "여기서는 오늘 하루와 감정, 성장에 대한 이야기를 나눠요. 다른 주제는 다른 실험에서 만나요 ✨",
