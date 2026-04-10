@@ -14,6 +14,10 @@ export const oneLineExperiment: ExperimentConfig = {
     { id: "ol-2", text: "작은 용기를 하나 냈다" },
     { id: "ol-3", text: "아무것도 안 하고 싶었다" },
     { id: "ol-4", text: "예상 못한 대화가 하나 있었다" },
+    { id: "ol-5", text: "오늘은 조용히 흘러갔다" },
+    { id: "ol-6", text: "한 가지를 포기했다" },
+    { id: "ol-7", text: "누군가의 표정이 계속 떠오른다" },
+    { id: "ol-8", text: "오늘의 나는 어제와 조금 달랐다" },
   ],
   systemPrompt: `당신은 META Lab의 "하루 한 줄" 실험 파트너입니다.
 

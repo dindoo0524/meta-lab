@@ -14,6 +14,10 @@ export const growthTalkExperiment: ExperimentConfig = {
     { id: "gt-2", text: "요즘 마음에 걸리는 게 있어요" },
     { id: "gt-3", text: "에너지가 바닥인 느낌이에요" },
     { id: "gt-4", text: "뭔가 바꾸고 싶은데 뭔지 모르겠어요" },
+    { id: "gt-5", text: "오늘 작은 성취가 하나 있었어요" },
+    { id: "gt-6", text: "누군가에게 고마운 마음이 들었어요" },
+    { id: "gt-7", text: "오늘 나를 가장 힘들게 한 건..." },
+    { id: "gt-8", text: "내일은 좀 다르게 해보고 싶어요" },
   ],
   systemPrompt: `당신은 META의 성장톡 대화 파트너입니다.
 

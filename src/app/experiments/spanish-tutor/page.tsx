@@ -1,6 +1,18 @@
 import Link from "next/link";
 
+function getDday() {
+  const target = new Date("2026-10-01");
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const diff = Math.ceil(
+    (target.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return diff;
+}
+
 export default function SpanishTutorPage() {
+  const dday = getDday();
+
   return (
     <div className="flex flex-1 flex-col items-center justify-center text-center">
       <div className="mb-12">
@@ -9,6 +21,11 @@ export default function SpanishTutorPage() {
         </span>
         <h1 className="mt-4 text-3xl font-bold tracking-tight">스페인어 튜터</h1>
         <p className="mt-3 text-base text-white/50">스페인어 회화 연습</p>
+        {dday > 0 && (
+          <p className="mt-2 text-xs text-(--color-accent)/70">
+            ✈️ 스페인 신혼여행까지 D-{dday}
+          </p>
+        )}
       </div>
 
       <div className="mb-16 max-w-xs space-y-3 text-white/35 text-sm leading-relaxed">

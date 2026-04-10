@@ -151,6 +151,7 @@ export function ChatRoom({ experiment }: ChatRoomProps) {
           <StarterQuestions
             questions={experiment.starterQuestions}
             onSelect={sendMessage}
+            daily
           />
         ) : (
           <div className="flex flex-col gap-3 pb-4">
