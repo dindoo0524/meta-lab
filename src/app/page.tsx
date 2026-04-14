@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { experiments } from "@/content/experiments";
+import { StatsWidget } from "@/components/stats-widget";
 
 const experimentList = Object.values(experiments);
 
@@ -18,6 +19,9 @@ export default function Home() {
           세상의 지식을 탐구하다
         </p>
       </div>
+
+      {/* Stats */}
+      <StatsWidget />
 
       {/* Experiments */}
       <div className="w-full space-y-3">
